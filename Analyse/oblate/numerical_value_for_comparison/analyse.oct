@@ -1,0 +1,35 @@
+clear all;
+
+x = load("numerical_x.dat");
+
+indx = x(:,1);
+rx = x(:,2);
+s11x = x(:,3);
+s22x = x(:,4);
+s33x = x(:,5);
+s23x = x(:,6);
+s13x = x(:,7);
+s12x = x(:,8);
+
+n1 = size(indx);
+n = n1(1)
+
+for i = 1:128
+
+if(indx(i) == 64)
+rx(i)
+s11x(i)
+s13x(i)
+endif
+
+if( indx(i) > 64 && rx(i) > 1)
+imod = i
+rxm = 1;
+
+s13x(i-1)
+s13xm = s13x(i) - (rx(i) - rxm) * (s13x(i) - s13x(i-1))./ ((rx(i) - rx(i-1)))
+s13x(i)
+break;
+endif
+
+end

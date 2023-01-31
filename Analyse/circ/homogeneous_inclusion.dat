@@ -1,0 +1,6 @@
+#Stress_component	Analytical	Numerical	Pct_error
+
+sig11		-0.000000	-0.002472	Inf	
+sig22		-0.000000	-0.000971	Inf	
+sig33		-0.000000	-0.002472	Inf	
+sig12		-0.000000	-0.002144	0.214400	

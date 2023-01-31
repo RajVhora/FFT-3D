@@ -1,0 +1,19 @@
+0.3
+50
+12.5
+210
+210
+0.001
+0.001
+0.001
+
+nu
+Major axis
+Minor axis
+Young's Modulus of matrix
+Young's Modulus of precipitate
+Omega11
+Omega22
+Omega33
+
+#This code cannot read major axis and minor axis for now

@@ -1,0 +1,61 @@
+clear all;
+
+expt_sig11 = -0.002472
+expt_sig22 = -0.000971
+expt_sig33 = -0.002472
+
+expt_sig12 = -0.002144
+expt_sig13 = -2.198878
+
+c11 = 45;
+c12 = 11;
+c44 = 17;
+
+mu = c44;
+nu = c12/(2*(c12 + c44))
+
+eps11 = 0.0;
+eps22 = 0.0;
+eps33 = 0.0;
+eps12 = 0.0;
+eps13 = 0.129;
+eps23 = 0.0;
+
+eps21 = eps12;
+eps31 = eps13;
+eps32 = eps23;
+
+sig11 = - mu*16/(15*(1-nu))*eps11...
+        - 2*mu*(5*nu + 1)/(15*(1-nu))*eps22...
+        - 2*mu*(5*nu + 1)/(15*(1-nu))*eps33
+    
+sig22 = - mu*16/(15*(1-nu))*eps22...
+        - 2*mu*(5*nu + 1)/(15*(1-nu))*eps33...
+        - 2*mu*(5*nu + 1)/(15*(1-nu))*eps11
+    
+sig33 = - mu*16/(15*(1-nu))*eps33...
+        - 2*mu*(5*nu + 1)/(15*(1-nu))*eps11...
+        - 2*mu*(5*nu + 1)/(15*(1-nu))*eps22
+   
+sig12 = - 2*mu*(7 - 5*nu)/(15*(1-nu))*eps12
+
+sig13 = - 2*mu*(7 - 5*nu)/(15*(1-nu))*eps13
+
+elastic_energy = 8*pi*(40*0.4)^3*mu/(45*(1-nu))*...
+        (4*(eps11^2 + eps22^2 + eps33^2)...
+        + (5*nu+1)*(eps11*eps22+eps22*eps33+eps33*eps11)...
+        + (7-5*nu)*(eps12^2 + eps13^2 + eps23^2))
+    
+pct_error_S11 = abs((sig11 - expt_sig11) / sig11 * 100)
+pct_error_S22 = abs((sig22 - expt_sig22) / sig22 * 100)
+pct_error_S33 = abs((sig33 - expt_sig33) / sig33 * 100)
+pct_error_S12 = abs((sig12 - expt_sig12) * 100)
+
+filename = "homogeneous_inclusion.dat";
+fid = fopen (filename, "w");
+fprintf(fid,"#Stress_component	Analytical	Numerical	Pct_error\n\n");
+fprintf(fid,"sig11		%f	%f	%f	\n",sig11,expt_sig11,pct_error_S11);
+fprintf(fid,"sig22		%f	%f	%f	\n",sig22,expt_sig22,pct_error_S22);
+fprintf(fid,"sig33		%f	%f	%f	\n",sig33,expt_sig33,pct_error_S33);
+fprintf(fid,"sig12		%f	%f	%f	\n",sig12,expt_sig12,pct_error_S12);
+fclose (fid);
