@@ -216,7 +216,7 @@ void evolve_inhom_constrained(int n_x, int n_y, int n_z, double delta_x,
 
 	calculate_S_exp(n_x, n_y, n_z, delta_x, delta_y, delta_z, comp, ave_comp, Ceff, DeltaC, S, n_alpha,
 					alpha);
-
+	/*
 	for (i1 = 1; i1 < 4; ++i1)
 	{
 		for (i2 = 1; i2 < 4; ++i2)
@@ -238,7 +238,7 @@ void evolve_inhom_constrained(int n_x, int n_y, int n_z, double delta_x,
 			}
 		}
 	}
-
+	*/
 	/*
 	E[1][1] = E[2][2] = 0.01;
 	E[1][2] = E[2][1] = 0.0;
